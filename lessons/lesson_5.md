@@ -34,13 +34,28 @@ npm init
 ```
 На вопросы визарда npm init в данном случае можно отвечать произвольно, но в качестве entry point рекомендую указать "app.js".
 
-Установим Express и nodemon:
+Установим Express и Nodemon:
 
 ```js
 npm i express --save
 npm i nodemon -g
 ```
 Nodemon - это утилита, которая отслеживает изменения в исходном коде и автоматически перезагружает приложение.
+В рабочем каталоге создайте файл конфигурации Nodemon с именем nodemon.json и следующим содержимым:
+```js
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
+```
+Более подробно с настройкой и возможностями Nodemon можно ознакомится [здесь](https://github.com/remy/nodemon).
 
 Создайте файл app.js в нашем рабочем каталоге и скопируйте в него следующий код:
 
@@ -70,15 +85,22 @@ nodemon app.js
 ```js
 $ nodemon app.js
 [nodemon] 1.18.3
+[nodemon] reading config ./nodemon.json
 [nodemon] to restart at any time, enter `rs`
+[nodemon] or send SIGHUP to 25871 to restart
+[nodemon] ignoring: .git node_modules/**/node_modules
 [nodemon] watching: *.*
+[nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node app.js`
+[nodemon] forking
+[nodemon] child pid: 25883
+[nodemon] watching 4 files
 Express is listening on port 3000
 ```
 Это означает, что наше приложение успешно запущено и Express слушает указанный порт, в нашем случае это 3000.
 Теперь, если в браузере перейти по адресу localhost:3000, то в окне браузера мы увидим:
 
-
+![Hello world!](../data/lesson_5/img/1.png)
 
 ### Маршрутизация
  -
@@ -87,9 +109,6 @@ Express is listening on port 3000
  -
 
 ### Шаблонизаторы
- -
-
-### Интеграция с БД
  -
 
 ## Домашнее задание
